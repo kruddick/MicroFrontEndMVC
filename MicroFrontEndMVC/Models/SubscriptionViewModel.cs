@@ -58,12 +58,12 @@
             Subscriptions.Add(
                 new Subscription
                 {
-                    SubscriptionCssId = "model-picker",
+                    SubscriptionCssId = "spinner",
                     SubscriptionCssClass = "overlay",
-                    SubscriptionName = "Model Picker",
+                    SubscriptionName = "spinner",
                     ComponentType = "overlay",
                     FileNameCss = "",
-                    FileNameJs = ""
+                    FileNameJs = "/js/spinner.js"
                 }
             );
         }
