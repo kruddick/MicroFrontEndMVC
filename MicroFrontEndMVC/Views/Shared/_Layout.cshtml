@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MicroFrontEndMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MicroFrontEndMVC.styles.css" asp-append-version="true" />
+    <link href="~/css/header.css" rel="stylesheet" />
+    <script>
+        // Create an empty object on the window object
+        window.messageBus = {};
+
+        // Set a flag variable to log out messages
+        window.messageBus.showMesaages = true;
+        
+        // Create an array to store the callbacks
+        window.messageBus.callbacks = [];
+
+        // Create a function to register for messages
+        window.messageBus.register = function (callback) {
+            // Add the callback to the array
+            this.callbacks.push(callback);
+        }
+
+        // Create a function to unregister for messages
+        window.messageBus.unregister = function (callback) {
+            // Find the index of the callback in the array
+            var index = this.callbacks.indexOf(callback);
+
+            // If the callback is in the array, remove it
+            if (index > -1) {
+                this.callbacks.splice(index, 1);
+            }
+        }
+
+        // Create a function to publish messages
+        window.messageBus.publish = function (messageName, messageBody) {
+            if (this.showMessages) {
+                console.log("Message Published: " + messageName);
+                console.log(messageBody);
+            }
+            
+            // Iterate through the callbacks and call them with the message
+            this.callbacks.forEach(function (callback) {
+                callback(messageName, messageBody);
+            });
+        }
+    </script>
+</head>
+<body>
+    <header id="header">
+       
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer id="footer">
+        
+    </footer>
+    <script src="~/js/header.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

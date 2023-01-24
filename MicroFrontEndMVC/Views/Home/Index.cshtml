@@ -1,0 +1,37 @@
+﻿@using MicroFrontEndMVC.Models
+@model SubscriptionViewModel
+
+<script>
+    window.sessionStorage.setItem("agentname", "@Model.AgentId");
+</script>
+
+
+<div class="text-center">
+    @foreach(var sub in Model.Subscriptions.Where(x => x.ComponentType != "overlay").ToList())
+    {
+        <div id="@sub.SubscriptionCssId" class="@sub.SubscriptionCssClass" data-menu-name="@sub.SubscriptionName">
+        </div>
+    }
+</div>
+
+@foreach (var sub in Model.Subscriptions.Where(x => x.ComponentType == "overlay").ToList())
+{
+    <div id="@sub.SubscriptionCssId" class="@sub.SubscriptionCssClass" data-menu-name="@sub.SubscriptionName">
+    </div>
+}
+
+@foreach (var sub in Model.Subscriptions)
+{
+    if (!string.IsNullOrEmpty(sub.FileNameCss))
+    {
+        <link href="@sub.FileNameCss" rel="stylesheet" />
+    }
+}
+
+@foreach (var sub in Model.Subscriptions)
+{
+    if(!string.IsNullOrEmpty(sub.FileNameJs))
+    {
+        <script src="@sub.FileNameJs"></script>
+    }    
+}
