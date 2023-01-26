@@ -50,6 +50,8 @@
             });
         }
     </script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/Components/PageNotification.js"></script>
 </head>
 <body>
     <header id="header">
@@ -69,7 +71,11 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @*@await RenderSectionAsync("Scripts", required: false)*@
+    
+    @*@if(IsSectionDefined("Scripts")){
+        RenderSection("Scripts", required: false);
+    }*@
+    
     @foreach (var sub in Model.Subscriptions)
     {
         if (!string.IsNullOrEmpty(sub.FileNameCss))
