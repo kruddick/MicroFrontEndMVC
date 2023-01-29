@@ -10,24 +10,24 @@
             Subscriptions.Add(
                 new Subscription
                 {
-                    SubscriptionCssId = "home",
+                    SubscriptionCssId = "homepage",
                     SubscriptionCssClass = "component",
                     SubscriptionName = "Home",
                     ComponentType = "component",
-                    FileNameCss = "home.css",
-                    FileNameJs = "home.js"
+                    FileNameCss = "",
+                    FileNameJs = "/js/homepage.1.0.0.js"
                 }
             );
 
             Subscriptions.Add(
                 new Subscription
                 {
-                    SubscriptionCssId = "client",
+                    SubscriptionCssId = "client-component",
                     SubscriptionCssClass = "component",
                     SubscriptionName = "Clients",
                     ComponentType = "component",
                     FileNameCss = "",
-                    FileNameJs = ""
+                    FileNameJs = "/js/clients-component.1.0.0.js"
                 }
             );
 
@@ -63,7 +63,7 @@
                     SubscriptionName = "spinner",
                     ComponentType = "overlay",
                     FileNameCss = "",
-                    FileNameJs = "/js/spinner.js"
+                    FileNameJs = "/js/spinner.1.0.0.js"
                 }
             );
         }

@@ -6,70 +6,42 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MicroFrontEndMVC</title>
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MicroFrontEndMVC.styles.css" asp-append-version="true" />
     <link href="~/css/header.css" rel="stylesheet" />
-    <script>
-        // Create an empty object on the window object
-        window.messageBus = {};
-
-        // Set a flag variable to log out messages
-        window.messageBus.showMesaages = true;
+    
+    
+    @*this sets up our message bus before the other scripts run*@
+    <script src="~/js/messagebus.1.0.0.js" asp-append-version="true"></script>
         
-        // Create an array to store the callbacks
-        window.messageBus.callbacks = [];
-
-        // Create a function to register for messages
-        window.messageBus.register = function (callback) {
-            // Add the callback to the array
-            this.callbacks.push(callback);
-        }
-
-        // Create a function to unregister for messages
-        window.messageBus.unregister = function (callback) {
-            // Find the index of the callback in the array
-            var index = this.callbacks.indexOf(callback);
-
-            // If the callback is in the array, remove it
-            if (index > -1) {
-                this.callbacks.splice(index, 1);
-            }
-        }
-
-        // Create a function to publish messages
-        window.messageBus.publish = function (messageName, messageBody) {
-            if (this.showMessages) {
-                console.log("Message Published: " + messageName);
-                console.log(messageBody);
-            }
-            
-            // Iterate through the callbacks and call them with the message
-            this.callbacks.forEach(function (callback) {
-                callback(messageName, messageBody);
-            });
-        }
-    </script>
 </head>
+
+
 <body>
-    <header id="header">
-       
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    
+    <div class="holy-grail">
+        <header id="header"></header>
+    
+        <main class="holy-grail-main">
             @RenderBody()
         </main>
-    </div>
-
-    <footer id="footer">
         
-    </footer>
+        <footer></footer>
+        
+    </div>    
+    
+    
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+   
     <script src="~/js/header.js"></script>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @*@await RenderSectionAsync("Scripts", required: false)*@
+    <script src="~/js/sidemenu.1.0.0.js" asp-append-version="true"></script>
+    
+    @*write out any css files that are needed*@
     @foreach (var sub in Model.Subscriptions)
     {
         if (!string.IsNullOrEmpty(sub.FileNameCss))
@@ -78,12 +50,15 @@
         }
     }
 
+    @*write out all the javascript files*@
     @foreach (var sub in Model.Subscriptions)
     {
         if (!string.IsNullOrEmpty(sub.FileNameJs))
         {
-            <script src="@sub.FileNameJs"></script>
+            <script src="@sub.FileNameJs" asp-append-version="true"></script>
         }
     }
+
+
 </body>
 </html>

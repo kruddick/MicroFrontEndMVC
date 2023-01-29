@@ -14,5 +14,61 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background: rgb(0,98,140);
+    background: linear-gradient(90deg, rgb(31 56 122) 0%, rgb(49 108 203) 49%, rgba(0,122,255,1) 100%);
+}
+
+.icon-bar {
+    width: 90px;
+    background-color: #fff;
+}
+
+    .icon-bar a {
+        display: block;
+        text-align: center;
+        padding: 16px;
+        transition: all 0.3s ease;
+        color: blue;
+        font-size: 36px;
+    }
+
+        .icon-bar a:hover {
+            background-color: #000;
+        }
+
+.active {
+    background-color: rgba(0,122,255,1);
+}
+
+* {
+    margin: 0;
+}
+
+body {
+}
+
+.holy-grail {
+    display: flex;
+    flex-direction: column;
+}
+
+.holy-grail-main {
+    /* Take the remaining height */
+    flex-grow: 1;
+    /* Layout the left sidebar, main content and right sidebar */
+    display: flex;
+    flex-direction: row;
+}
+
+.holy-grail-left {
+    width: 10%
+}
+
+.holy-grail-middle {
+    /* Take the remaining width */
+    flex-grow: 1;
+}
+
+.holy-grail-right {
+    width: 20%;
 }
