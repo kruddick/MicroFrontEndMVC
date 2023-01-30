@@ -34,12 +34,12 @@
             Subscriptions.Add(
                 new Subscription
                 {
-                    SubscriptionCssId = "accounts",
+                    SubscriptionCssId = "account-data",
                     SubscriptionCssClass = "component",
                     SubscriptionName = "Accounts",
                     ComponentType = "component",
                     FileNameCss = "",
-                    FileNameJs = ""
+                    FileNameJs = "/js/account-data.1.0.0.js"
                 }
             );
 

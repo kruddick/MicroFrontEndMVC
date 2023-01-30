@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MicroFrontEndMVC.styles.css" asp-append-version="true" />
-    <link href="~/css/header.css" rel="stylesheet" />
-    
+   
     
     @*this sets up our message bus before the other scripts run*@
     <script src="~/js/messagebus.1.0.0.js" asp-append-version="true"></script>
@@ -24,7 +23,7 @@
 <body>
     
     <div class="holy-grail">
-        <header id="header"></header>
+        <header id="header-component" class="shadow mb-3"></header>
     
         <main class="holy-grail-main">
             @RenderBody()
@@ -38,24 +37,27 @@
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
    
-    <script src="~/js/header.js"></script>
+    <script src="~/js/header-component.1.0.0.js" asp-append-version="true"></script>
     <script src="~/js/sidemenu.1.0.0.js" asp-append-version="true"></script>
     
     @*write out any css files that are needed*@
-    @foreach (var sub in Model.Subscriptions)
-    {
-        if (!string.IsNullOrEmpty(sub.FileNameCss))
+    @if (Model != null && Model.Subscriptions != null)
+    {        
+        foreach (var sub in Model.Subscriptions)
         {
-            <link href="@sub.FileNameCss" rel="stylesheet" />
+            if (!string.IsNullOrEmpty(sub.FileNameCss))
+            {
+                <link href="@sub.FileNameCss" rel="stylesheet" />
+            }
         }
-    }
 
-    @*write out all the javascript files*@
-    @foreach (var sub in Model.Subscriptions)
-    {
-        if (!string.IsNullOrEmpty(sub.FileNameJs))
+        @*write out all the javascript files*@
+        foreach (var sub in Model.Subscriptions)
         {
-            <script src="@sub.FileNameJs" asp-append-version="true"></script>
+            if (!string.IsNullOrEmpty(sub.FileNameJs))
+            {
+                <script src="@sub.FileNameJs" asp-append-version="true"></script>
+            }
         }
     }
 
